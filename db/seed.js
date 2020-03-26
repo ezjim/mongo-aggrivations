@@ -1,8 +1,8 @@
-const Zoo = require('../lib/models/Zoo');
+const Zoo = require('../lib/models/Zoos');
 const Animals = require('../lib/models/Animals');
 const chance = require('chance').Chance();
 // specifying the number of zoos to create with our seed function
-module.exports = async({ zoosToCreate = 5, animalsToCreate = 60 } = {}) => {
+module.exports = async({ zoosToCreate = 10, animalsToCreate = 100 } = {}) => {
   // creating zoos
   // creating an array of zoosToCreate length
   // map through the array
@@ -18,7 +18,7 @@ module.exports = async({ zoosToCreate = 5, animalsToCreate = 60 } = {}) => {
   await Animals.create([...Array(animalsToCreate)].map(() => ({
     zooId: chance.pickone(zoos)._id,
     name: chance.animal(),
-    count: chance.chance.integer({ min: 0, max: 60 })
+    count: chance.integer({ min: 0, max: 60 })
   })));
 };
 
